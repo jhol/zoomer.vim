@@ -20,10 +20,6 @@ command! -nargs=? ZoomIn   :call s:ZoomIn(<args>)
 command! -nargs=? ZoomOut  :call s:ZoomOut(<args>)
 command! -narg=0 ZoomReset :call s:ZoomReset()
 
-" map
-nmap + :ZoomIn<CR>
-nmap - :ZoomOut<CR>
-
 " increase font size
 function! s:ZoomIn(...)
   let l:fsize = str2float(substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', ''))

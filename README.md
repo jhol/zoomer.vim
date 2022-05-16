@@ -19,8 +19,18 @@ To install `zoomer.vim` use your plugin manager of choice, for example:
 Plug 'jhol/zoomer.vim'
 ```
 
+Define key mappings:
+
+```
+nmap + :ZoomIn<CR>
+nmap - :ZoomOut<CR>
+```
+
 Usage
 -----
+
+Commands
+--------
 
 ### Commands
 
