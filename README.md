@@ -45,3 +45,5 @@ Commands
   * `g:zoomer_amount` is the default increment or decrement that is applied to
     the font size. The value may be an integer or float that indicate the
     number of points to increase the font size.
+  * `g:zoomer_min_size` and `g:zoomer_max_size` set font size limits. The range
+    is clamped between 1.0 and 1000.0 pt by default.
