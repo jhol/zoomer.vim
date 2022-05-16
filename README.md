@@ -19,8 +19,9 @@ To install `zoomer.vim` use your plugin manager of choice, for example:
 Plug 'jhol/zoomer.vim'
 ```
 
-Define key mappings:
+### Define key mappings
 
+#### vimscript
 ```
 " Zoom with +/- keys
 nmap + :ZoomIn<CR>
@@ -29,6 +30,17 @@ nmap - :ZoomOut<CR>
 " Zoom with Ctrl + Scroll Wheel
 nmap <C-ScrollWheelUp> :ZoomIn<CR>
 nmap <C-ScrollWheelDown> :ZoomOut<CR>
+```
+
+#### NeoVim lua
+```
+-- Zoom with +/- keys
+vim.api.nvim_set_keymap('n', '+', '<cmd>ZoomIn<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '-', '<cmd>ZoomOut<CR>', { noremap = true })
+
+-- Zoom with Ctrl + Scroll Wheel
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelUp>', '<cmd>ZoomIn<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-ScrollWheelDown>', '<cmd>ZoomOut<CR>', { noremap = true })
 ```
 
 Usage
