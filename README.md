@@ -22,8 +22,13 @@ Plug 'jhol/zoomer.vim'
 Define key mappings:
 
 ```
+" Zoom with +/- keys
 nmap + :ZoomIn<CR>
 nmap - :ZoomOut<CR>
+
+" Zoom with Ctrl + Scroll Wheel
+nmap <C-ScrollWheelUp> :ZoomIn<CR>
+nmap <C-ScrollWheelDown> :ZoomOut<CR>
 ```
 
 Usage
