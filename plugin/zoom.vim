@@ -1,7 +1,13 @@
 if &cp || exists("g:loaded_zoom")
     finish
 endif
+
 let g:loaded_zoom = 1
+
+if ! exists('g:zoom_amount')
+  " number of points to increment or decrement font size by
+  let g:zoom_amount = 1
+endif
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -10,28 +16,25 @@ set cpo&vim
 let s:current_font = &guifont
 
 " command
-command! -narg=0 ZoomIn    :call s:ZoomIn()
-command! -narg=0 ZoomOut   :call s:ZoomOut()
+command! -nargs=? ZoomIn   :call s:ZoomIn(<args>)
+command! -nargs=? ZoomOut  :call s:ZoomOut(<args>)
 command! -narg=0 ZoomReset :call s:ZoomReset()
 
 " map
 nmap + :ZoomIn<CR>
 nmap - :ZoomOut<CR>
 
-" guifont size + 1
-function! s:ZoomIn()
-  let l:fsize = substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', '')
-  let l:fsize += 1
-  let l:guifont = substitute(&guifont, ':h\([^:]*\)', ':h' . l:fsize, '')
+" increase font size
+function! s:ZoomIn(...)
+  let l:fsize = str2float(substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', ''))
+  let l:fsize += get(a:, 1, g:zoom_amount)
+  let l:guifont = substitute(&guifont, ':h\([^:]*\)', ':h' . string(l:fsize), '')
   let &guifont = l:guifont
 endfunction
 
-" guifont size - 1
-function! s:ZoomOut()
-  let l:fsize = substitute(&guifont, '^.*:h\([^:]*\).*$', '\1', '')
-  let l:fsize -= 1
-  let l:guifont = substitute(&guifont, ':h\([^:]*\)', ':h' . l:fsize, '')
-  let &guifont = l:guifont
+" decrease font size
+function! s:ZoomOut(...)
+  ZoomIn(-get(a:, 1, g:zoom_amount))
 endfunction
 
 " reset guifont size
